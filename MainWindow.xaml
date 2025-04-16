@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoLecture"
         mc:Ignorable="d"
-        Title="Video Lecture" Height="450" Width="800">
+        Title="Video Lecture" MinHeight="500" MinWidth="700" MaxHeight="1090" MaxWidth="1940">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_Файл">
