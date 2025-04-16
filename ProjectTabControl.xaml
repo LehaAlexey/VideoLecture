@@ -1,0 +1,8 @@
+﻿<UserControl x:Class="VideoLecture.Views.ProjectTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="ProjectTabControl">
+    <Grid>
+        <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Bold"/>
+    </Grid>
+</UserControl>
