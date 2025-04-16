@@ -28,7 +28,7 @@ namespace VideoLecture
         private void ChooseText_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ImageFileDialog = new OpenFileDialog();
-            ImageFileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg|";
+            ImageFileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
 
             bool? result = ImageFileDialog.ShowDialog();
 
@@ -39,7 +39,7 @@ namespace VideoLecture
         private void ChoosePdf_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog PdfFileDialog = new OpenFileDialog();
-            PdfFileDialog.Filter = "PDF Files (*.pdf)|*.pdf|";
+            PdfFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
 
             bool? result = PdfFileDialog.ShowDialog();
 
@@ -61,7 +61,7 @@ namespace VideoLecture
         private void ChoosePhoto_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ImageFileDialog = new OpenFileDialog();
-            ImageFileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg|";
+            ImageFileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
 
             bool? result = ImageFileDialog.ShowDialog();
 

@@ -48,7 +48,8 @@ namespace VideoLecture
         {
             var projectTab = new ProjectTab
             {
-                DataContext = project // Привязка данных к вкладке
+                DataContext = project, // Привязка данных к вкладке
+                Content = new ProjectPage()
             };
 
             TabItem tabItem = new TabItem
