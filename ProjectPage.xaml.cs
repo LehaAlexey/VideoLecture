@@ -18,7 +18,7 @@ namespace VideoLecture
     /// <summary>
     /// Логика взаимодействия для ProjectPage.xaml
     /// </summary>
-    public partial class ProjectPage : Window
+    public partial class ProjectPage : UserControl
     {
         public ProjectPage()
         {
