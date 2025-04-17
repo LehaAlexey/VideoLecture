@@ -60,5 +60,10 @@ namespace VideoLecture
 
             ProjectTabControl.Items.Add(tabItem);
         }
+
+        private void VideoLectureManagment_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

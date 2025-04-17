@@ -1,0 +1,41 @@
+﻿<Window x:Class="VideoLecture.VideoLectureManager"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoLecture"
+        mc:Ignorable="d"
+        Title="VideoLectureManager" Height="400" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.2*"></RowDefinition>
+            <RowDefinition Height="0.7*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Добавление видеолектора-->
+        <Grid>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Button Grid.Column="0" Content="Файл голоса" Click="ChooseAudio_Click" Margin="0,30,0,10"/>
+                    <Button Grid.Column="0" Content="Фото преопдавателя" Click="ChoosePhoto_Click" Margin="30,30,0,10"/>
+
+                </StackPanel>
+                <Label Content="Введите название образа:" Margin="6,9,6,0" />
+                <TextBox x:Name="LectureNameTextBox" Margin="9,0,9,9"/>
+                <Button Grid.Column="0" Content="Добавить" Click="ChoosePhoto_Click" Margin="80,0,80,30"/>
+            </StackPanel>    
+        </Grid>
+        <Grid Grid.Row="1">
+            <ListBox d:ItemsSource="{d:SampleData ItemCount=53}"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button Grid.Column="0" Content="Удалить образ" Click="ChooseAudio_Click" Margin="0,30,0,10" Foreground="#FFD40000"/>
+                <Button Grid.Column="0" Content="Изменить образ" Click="ChoosePhoto_Click" Margin="30,30,0,10"/>
+            </StackPanel>
+        </Grid>
+        
+
+    </Grid>
+</Window>
