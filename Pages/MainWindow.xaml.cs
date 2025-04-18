@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using VideoLecture.DataProviders;
+using VideoLecture.Pages;
 using VideoLecture.Services;
 using VideoLecture.Views;
 
@@ -27,14 +29,10 @@ namespace VideoLecture
         private void ShowCreateProjectDialog()
         {
             CreateProjectDialog dialog = new CreateProjectDialog();
-            if (dialog.ShowDialog() == true) // Если пользователь нажал "Создать"
+            if (dialog.ShowDialog() == true)
             {
                 string projectName = dialog.ProjectName;
                 AddNewProject(projectName);
-            }
-            else
-            {
-                // Логика, если пользователь отменил создание проекта
             }
         }
 
@@ -61,9 +59,44 @@ namespace VideoLecture
             ProjectTabControl.Items.Add(tabItem);
         }
 
-        private void VideoLectureManagment_Click(object sender, RoutedEventArgs e)
+        private void AddLecture_Click(object sender, RoutedEventArgs e)
         {
+            var createDialog = new AddEditLecture()
+            .ShowDialog();
+        }
 
+        public string LectureName { get; set; } = string.Empty;
+        private void EditLecture_Click(object sender, RoutedEventArgs e)
+        {
+            LectureList dialog = new LectureList();
+            dialog.LectureIsChose += GetLectureName;
+            dialog.ShowDialog();
+            if (dialog.DialogResult == true)
+            {
+                var editDialog = new AddEditLecture(VideoLectureProvider.GetLecture(LectureName))
+                .ShowDialog();
+            }
+            LectureName = string.Empty;
+        }
+        private void DeleteLecture_Click(object sender, RoutedEventArgs e)
+        {
+            LectureList dialog = new LectureList();
+            dialog.LectureIsChose += GetLectureName;
+            dialog.ShowDialog();
+            if (dialog.DialogResult == true)
+            {
+                var result = MessageBox.Show("Вы действительно хотите удалить образ?", 
+                                                "Отменить это действие будет невозможно.", 
+                                                MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes) {
+                    VideoLectureProvider.DeleteLecture(LectureName);
+                }
+            }
+            LectureName = string.Empty;
+        }
+        private void GetLectureName(object sender, string name)
+        {
+            LectureName = name;
         }
     }
 }

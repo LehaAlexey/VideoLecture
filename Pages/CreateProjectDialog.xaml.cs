@@ -14,14 +14,14 @@ namespace VideoLecture
         private void CreateButton_Click(object sender, RoutedEventArgs e)
         {
             ProjectName = ProjectNameTextBox.Text;
-            DialogResult = true; // Устанавливаем результат диалога как "успешный"
-            Close(); // Закрываем диалог
+            DialogResult = true;
+            Close();
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = false; // Устанавливаем результат диалога как "отмененный"
-            Close(); // Закрываем диалог
+            DialogResult = false;
+            Close();
         }
     }
 }
