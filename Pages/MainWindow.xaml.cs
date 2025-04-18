@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Controls;
 using VideoLecture.DataProviders;
 using VideoLecture.Pages;
@@ -16,12 +17,11 @@ namespace VideoLecture
         public MainWindow()
         {
             InitializeComponent();
-
             IProjectFactory projectFactory = new ProjectFactoryMOCK(); //пока назвать иначе чем MOCK эту реализацию не могу. Такова жизззь
             _projectController = new ProjectControllerMOCK(projectFactory);
         }
 
-        private void CreateProject_Click(object sender, RoutedEventArgs e)
+        private void AddProject_Click(object sender, RoutedEventArgs e)
         {
             ShowCreateProjectDialog();
         }

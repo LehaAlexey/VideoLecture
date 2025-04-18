@@ -12,7 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using VideoLecture.DataProviders;
+using VideoLecture.Pages;
 
 namespace VideoLecture
 {
@@ -25,15 +27,34 @@ namespace VideoLecture
         {
             InitializeComponent();
         }
+        public Lecture Lecture { get; set; }
+        public string PdfPath { get; set; }
+        public string TextPath { get; set; }
+        private void ChooseLecture_Click(object sender, RoutedEventArgs e)
+        {
+            LectureList dialog = new LectureList();
+            dialog.LectureIsChose += GetLecture;
+            dialog.ShowDialog();
+            if (dialog.DialogResult == true)
+            {
+               Lecture = VideoLectureProvider.GetLecture(LectureName);
+            }
+            
+        }
+        public string LectureName { get; set; }
+        private void GetLecture(object sender, string name)
+        {
+            LectureName = name;
+        }
 
         private void ChooseText_Click(object sender, RoutedEventArgs e)
         {
-            var textPath = FileProvider.ChooseText();
+            TextPath = FileProvider.ChooseText();
         }
 
         private void ChoosePdf_Click(object sender, RoutedEventArgs e)
         {
-            var pdfPath = FileProvider.ChoosePdf();
+            PdfPath = FileProvider.ChoosePdf();
         }
     }
 }
