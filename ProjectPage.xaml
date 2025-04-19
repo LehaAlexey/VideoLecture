@@ -17,10 +17,38 @@
             <StackPanel Background="Gainsboro" MaxHeight="300" VerticalAlignment="Top">
                 <TextBlock Text="Название проекта:" FontWeight="Bold" />
                 <TextBlock Text="{Binding Name}" FontSize="14" Margin="0,0,0,10" />
+                <StackPanel Margin="4,0,8,10">
+                    <Button Grid.Column="0" Content="Выбрать размеченный текст" Click="ChooseText_Click" />
+                    <TextBlock x:Name="TextIsChooseTextBlock" FontSize="11" FontFamily="Arial" FontStyle="Italic" 
+                        Width="150" 
+                        HorizontalAlignment="center" 
+                        VerticalAlignment="Top" 
+                        TextTrimming="CharacterEllipsis" 
+                        ToolTipService.ToolTip="{Binding Text, ElementName=FileIsChooseTextBlock}" Foreground="#FF2D9200">
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="4,0,8,30">
+                    <Button Grid.Column="0" Content="Выбрать файл презентации" Click="ChoosePdf_Click" />
+                    <TextBlock x:Name="PdfIsChooseTextBlock" FontSize="11" FontFamily="Arial" FontStyle="Italic" 
+                        Width="150" 
+                        HorizontalAlignment="center" 
+                        VerticalAlignment="Top" 
+                        TextTrimming="CharacterEllipsis" 
+                        ToolTipService.ToolTip="{Binding Text, ElementName=FileIsChooseTextBlock}" Foreground="#FF2D9200">
+                    </TextBlock>
+                </StackPanel>
 
-                <Button Grid.Column="0" Content="Выбрать размеченный текст" Click="ChooseText_Click" Margin="4,0,8,10"/>
-                <Button Grid.Column="0" Content="Выбрать файл презентации" Click="ChoosePdf_Click" Margin="4,0,8,30"/>
-                <Button Grid.Column="0" Content="Выбрать образ лектора" Click="ChooseLecture_Click" Margin="4,0,8,30"/>
+                <StackPanel Margin="4,0,8,30">
+                    <Button Grid.Column="0" Content="Выбрать образ лектора" Click="ChooseLecture_Click"/>
+                    <TextBlock x:Name="LectureIsChooseTextBlock" FontSize="11" FontFamily="Arial" FontStyle="Italic" 
+                        Width="150" 
+                        HorizontalAlignment="center" 
+                        VerticalAlignment="Top" 
+                        TextTrimming="CharacterEllipsis" 
+                        ToolTipService.ToolTip="{Binding Text, ElementName=FileIsChooseTextBlock}" Foreground="#FF2D9200">
+                    </TextBlock>
+                </StackPanel>
+                
 
                 <Button Content="Запустить генерацию" Click="ChooseText_Click" Margin="4,0,8,15"/>
 

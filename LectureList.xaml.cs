@@ -25,7 +25,8 @@ namespace VideoLecture
         }
         private void SelectLecture_Click(object sender, RoutedEventArgs e)
         {
-            LectureIsChose(sender, Lectures.SelectedItem.ToString());
+            var tmpLecture = Lectures.SelectedItem as Lecture;
+            LectureIsChose(sender, tmpLecture.Name);
             DialogResult = true;
             Close();
         }

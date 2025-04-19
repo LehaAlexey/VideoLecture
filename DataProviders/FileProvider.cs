@@ -10,7 +10,7 @@ namespace VideoLecture.DataProviders
 {
     internal static class FileProvider
     {
-        public static string ChooseAudio()
+        public static bool ChooseAudio(out string path)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Audio File (*.wav)|*.wav";
@@ -18,12 +18,18 @@ namespace VideoLecture.DataProviders
             bool? result = fileDialog.ShowDialog();
 
             if (result.HasValue && result.Value)
-                return fileDialog.FileName;
-            else 
-                return string.Empty;
+            {
+                path = fileDialog.FileName;
+                return true;
+            }
+            else
+            {
+                path = string.Empty;
+                return false;
+            }
         }
 
-        public static string ChoosePhoto()
+        public static bool ChoosePhoto(out string path)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
@@ -31,25 +37,37 @@ namespace VideoLecture.DataProviders
             bool? result = fileDialog.ShowDialog();
 
             if (result.HasValue && result.Value)
-                return fileDialog.FileName;
+            {
+                path = fileDialog.FileName;
+                return true;
+            }
             else
-                return string.Empty;
+            {
+                path = string.Empty;
+                return false;
+            }
         }
 
-        public static string ChooseText()
+        public static bool ChooseText(out string path)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Image Files (*.png;*.jpg)|*.png;*.jpg";
+            fileDialog.Filter = "Text Files (*.txt)|*.txt";
 
             bool? result = fileDialog.ShowDialog();
 
             if (result.HasValue && result.Value)
-                return fileDialog.FileName;
+            {
+                path = fileDialog.FileName;
+                return true;
+            }
             else
-                return string.Empty;
+            {
+                path = string.Empty;
+                return false;
+            }
         }
 
-        public static string ChoosePdf()
+        public static bool ChoosePdf(out string path)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
@@ -57,9 +75,15 @@ namespace VideoLecture.DataProviders
             bool? result = fileDialog.ShowDialog();
 
             if (result.HasValue && result.Value)
-                return fileDialog.FileName;
+            {
+                path = fileDialog.FileName;
+                return true;
+            }
             else
-                return string.Empty;
+            {
+                path = string.Empty;
+                return false;
+            }
         }
     }
 }

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using VideoLecture.DataProviders;
 
 namespace VideoLecture.Pages
@@ -39,26 +27,33 @@ namespace VideoLecture.Pages
         }
         private void SetAudio_Click(object sender, RoutedEventArgs e)
         {
-            var path = FileProvider.ChooseAudio();
-            if (string.IsNullOrEmpty(path))
+            var isChoosen = FileProvider.ChooseAudio(out string path);
+            if (isChoosen)
+            {
+                AudioPath = path;
                 AddEditButton.IsEnabled = true;
+                AudioIsChooseTextBlock.Text = path.Split('\\').Last();
+            }
         }
         private void SetPhoto_Click(object sender, RoutedEventArgs e)
         {
-            var path = FileProvider.ChoosePhoto();
-            if (string.IsNullOrEmpty(path))
+            var isChoosen = FileProvider.ChoosePhoto(out string path);
+            if (isChoosen)
+            {
+                PhotoPath = path;
                 AddEditButton.IsEnabled = true;
+                PhotoIsChooseTextBlock.Text = path.Split('\\').Last();
+            }
         }
         private void LectureNameChanged(object sender, RoutedEventArgs e)
         {
             LectureNameTextBox.Text = LectureNameTextBox.Text.Trim();
-            if (true)
-                AddEditButton.IsEnabled = true;
+            AddEditButton.IsEnabled = true;
         }
 
         private void AddEditLecture_Click(object sender, RoutedEventArgs e)
         {
-            if (AudioPath == string.Empty || PhotoPath == string.Empty)
+            if (string.IsNullOrEmpty(AudioPath) || string.IsNullOrEmpty(PhotoPath))
             {
                 MessageBox.Show("Ошибка добавления: не выбрана фотография или файл озвучки.");
                 return;

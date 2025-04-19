@@ -37,7 +37,8 @@ namespace VideoLecture
             dialog.ShowDialog();
             if (dialog.DialogResult == true)
             {
-               Lecture = VideoLectureProvider.GetLecture(LectureName);
+                Lecture = VideoLectureProvider.GetLecture(LectureName);
+                LectureIsChooseTextBlock.Text = $"{LectureName}.xml";
             }
             
         }
@@ -49,12 +50,22 @@ namespace VideoLecture
 
         private void ChooseText_Click(object sender, RoutedEventArgs e)
         {
-            TextPath = FileProvider.ChooseText();
+            var isChoosen = FileProvider.ChooseText(out string path);
+            if (isChoosen)
+            {
+                TextPath = path;
+                TextIsChooseTextBlock.Text = path.Split('\\').Last();
+            }
         }
 
         private void ChoosePdf_Click(object sender, RoutedEventArgs e)
         {
-            PdfPath = FileProvider.ChoosePdf();
+            var isChoosen = FileProvider.ChoosePdf(out string path);
+            if (isChoosen)
+            {
+                PdfPath = path;
+                PdfIsChooseTextBlock.Text = path.Split('\\').Last();
+            }
         }
     }
 }

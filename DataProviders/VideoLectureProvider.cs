@@ -15,10 +15,9 @@ namespace VideoLecture.DataProviders
 
         static VideoLectureProvider()
         {
-            if (!File.Exists(PATH))
+            if (!Directory.Exists(PATH))
             {
-                File.Create(PATH);
-                //throw new Exception($"{PATH} directory doesnt exist!");
+                Directory.CreateDirectory(PATH);
             }
         }
         public static void CreateXmlFile(Lecture lecture)
