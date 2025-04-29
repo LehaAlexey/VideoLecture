@@ -17,8 +17,8 @@ namespace VideoLecture
         public MainWindow()
         {
             InitializeComponent();
-            IProjectFactory projectFactory = new ProjectFactoryMOCK(); //пока назвать иначе чем MOCK эту реализацию не могу. Такова жизззь
-            _projectController = new ProjectControllerMOCK(projectFactory);
+            IProjectFactory projectFactory = new ProjectFactory();
+            _projectController = new ProjectController(projectFactory);
         }
 
         private void AddProject_Click(object sender, RoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace VideoLecture
 
         private void ShowCreateProjectDialog()
         {
-            CreateProjectDialog dialog = new CreateProjectDialog();
+            CreateProjectDialog dialog = new CreateProjectDialog(_projectController);
             if (dialog.ShowDialog() == true)
             {
                 string projectName = dialog.ProjectName;
@@ -38,7 +38,8 @@ namespace VideoLecture
 
         private void AddNewProject(string name)
         {
-            var project = _projectController.CreateProjectAsync(name).Result; // Создание проекта
+            var task = _projectController.CreateProjectAsync(name); // Создание проекта
+            var project = task.Result;
             AddProjectTab(project);
         }
 
@@ -59,6 +60,18 @@ namespace VideoLecture
             ProjectTabControl.Items.Add(tabItem);
         }
 
+        public void RemoveProjectTab(IProject project)
+        {
+            var tabToRemove = ProjectTabControl.Items
+                .OfType<TabItem>()
+                .FirstOrDefault(tab => (tab.Content as ProjectTab)?.DataContext == project);
+
+            if (tabToRemove != null)
+            {
+                ProjectTabControl.Items.Remove(tabToRemove);
+            }
+        }
+
         private void AddLecture_Click(object sender, RoutedEventArgs e)
         {
             var createDialog = new AddEditLecture()
@@ -73,7 +86,7 @@ namespace VideoLecture
             dialog.ShowDialog();
             if (dialog.DialogResult == true)
             {
-                var editDialog = new AddEditLecture(VideoLectureProvider.GetLecture(LectureName))
+                var editDialog = new AddEditLecture(VideoLectorProvider.GetLecture(LectureName))
                 .ShowDialog();
             }
             LectureName = string.Empty;
@@ -89,7 +102,7 @@ namespace VideoLecture
                                                 "Отменить это действие будет невозможно.", 
                                                 MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes) {
-                    VideoLectureProvider.DeleteLecture(LectureName);
+                    VideoLectorProvider.DeleteLecture(LectureName);
                 }
             }
             LectureName = string.Empty;

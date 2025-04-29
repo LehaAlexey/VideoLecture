@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace VideoLecture.Services
 {
-    internal class ProjectMOCK : IProject
+    internal class Project : IProject
     {
-        public ProjectMOCK(string name)
+        public Project(string name)
         {
             Name = name;
         }
@@ -26,21 +26,6 @@ namespace VideoLecture.Services
         }
 
         public async Task<bool> GenerateLectueVideoAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> SetLecturePhotoAsync(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> SetPresentationAsync(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> SetSpeechAudioAsync(string path)
         {
             throw new NotImplementedException();
         }

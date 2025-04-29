@@ -9,10 +9,10 @@ namespace VideoLecture.Pages
     /// </summary>
     public partial class AddEditLecture : Window
     {
-        public Lecture lecture { get; set; }
+        public Lector lecture { get; set; }
         public string AudioPath { get; set; }
         public string PhotoPath { get; set; }
-        public AddEditLecture(Lecture lecture = null)
+        public AddEditLecture(Lector lecture = null)
         {
             InitializeComponent();
             
@@ -24,6 +24,8 @@ namespace VideoLecture.Pages
             PhotoPath = lecture.PhotoPath;
             LectureNameTextBox.Text = lecture.Name;
             AddEditButton.IsEnabled = false;
+            AudioIsChooseTextBlock.Text = AudioPath.Split('\\').Last();
+            PhotoIsChooseTextBlock.Text = PhotoPath.Split('\\').Last();
         }
         private void SetAudio_Click(object sender, RoutedEventArgs e)
         {
@@ -47,12 +49,12 @@ namespace VideoLecture.Pages
         }
         private void LectureNameChanged(object sender, RoutedEventArgs e)
         {
-            LectureNameTextBox.Text = LectureNameTextBox.Text.Trim();
             AddEditButton.IsEnabled = true;
         }
 
         private void AddEditLecture_Click(object sender, RoutedEventArgs e)
         {
+            LectureNameTextBox.Text = LectureNameTextBox.Text.Trim();
             if (string.IsNullOrEmpty(AudioPath) || string.IsNullOrEmpty(PhotoPath))
             {
                 MessageBox.Show("Ошибка добавления: не выбрана фотография или файл озвучки.");
@@ -63,26 +65,26 @@ namespace VideoLecture.Pages
                 MessageBox.Show("Ошибка добавления: не введено название образа.");
                 return;
             }
-            if (!Regex.IsMatch(LectureNameTextBox.Text, @"^[A-Za-zА-Яа-яеё0-9 _-]+$"))
+            if (!Regex.IsMatch(LectureNameTextBox.Text, @"^[A-Za-zА-Яа-яёЁ0-9-_.,]+$"))
             {
-                MessageBox.Show("Ошибка добавления: название образа имеет неверный формат. Используйте буквы, цифры, а также следующие символы: ' ', '-', '_'.");
+                MessageBox.Show("Ошибка добавления: название образа имеет неверный формат. Используйте буквы, цифры, а также следующие символы: '-' или '_'.");
                 return;
             }
 
             if (lecture is null) //если мы СОЗДАЕМ, а не исправляем
             {
-                if (VideoLectureProvider.IsXmlFileExist(LectureNameTextBox.Text))
+                if (VideoLectorProvider.IsXmlFileExist(LectureNameTextBox.Text))
                 {
                     MessageBox.Show("Ошибка добавления: образ с таким названием уже существует");
                     return;
                 }
-                VideoLectureProvider.CreateXmlFile(new Lecture() { Name = LectureNameTextBox.Text, AudioPath = AudioPath, PhotoPath = PhotoPath });
+                VideoLectorProvider.CreateXmlFile(new Lector() { Name = LectureNameTextBox.Text, AudioPath = AudioPath, PhotoPath = PhotoPath });
                 MessageBox.Show("Образ успешно добавлен!");
                 return;
             }
 
             //TODO: Исправить это, чтобы образ создавался или перезаписывался
-            VideoLectureProvider.EditXmlFile(lecture.Name, new Lecture() { Name = LectureNameTextBox.Text, AudioPath = AudioPath, PhotoPath = PhotoPath });
+            VideoLectorProvider.EditXmlFile(lecture.Name, new Lector() { Name = LectureNameTextBox.Text, AudioPath = AudioPath, PhotoPath = PhotoPath });
             MessageBox.Show("Образ успешно добавлен!");
             return;
         }

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoLecture"
         mc:Ignorable="d"
-        Title="Video Lecture" MinHeight="500" MinWidth="700" MaxHeight="1090" MaxWidth="1940">
+        Title="Видеолектор" MinHeight="500" MinWidth="700" MaxHeight="1090" MaxWidth="1940">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_Файл">
+            <MenuItem Header="_Видеолекции">
                 <MenuItem Header="_Создать проект" Click="AddProject_Click"/>
             </MenuItem>
             <MenuItem Header="_Образы лекторов">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoLecture.DataProviders
 {
-    public class Lecture
+    public class Lector
     {
         public string Name { get; set; }
         public string PhotoPath { get; set; }

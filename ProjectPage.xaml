@@ -73,17 +73,20 @@
         <Grid Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Bottom">
             <StackPanel Background="Gainsboro">
                 <Button Grid.Column="0" Content="Экспортировать проект" Click="ChooseText_Click" Margin="8,10,8,5"/>
-                <Button Grid.Column="0" Content="Удалить проект" Click="ChoosePdf_Click" Margin="8,5,8,10" Foreground="#FFCE0000"/>
+                <Button Grid.Column="0" Content="Удалить проект" Click="DeleteProject_Click" Margin="8,5,8,10" Foreground="#FFCE0000"/>
             </StackPanel>
         </Grid>
         
         <!-- 1;1 Блок Отображения фрагментов и функции перегенерации-->
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="10" VerticalAlignment="Bottom">
-            <StackPanel Orientation="Horizontal" Background="Gainsboro" HorizontalAlignment="Center">
-                <Button Width="100" Height="40" Content="Предыдущий" Click="ChooseText_Click" Margin="10"/>
-                <Button Width="120" Height="30" Content="Перегенерировать" Click="ChoosePdf_Click" Margin="10" Foreground="#FFCE0000"/>
-                <Button Width="100" Height="40" Content="Следующий" Click="ChooseText_Click" Margin="10"/>
+            <StackPanel Orientation="Vertical" Background="Gainsboro" HorizontalAlignment="Center">
+                <TextBlock x:Name="CurrentSlideNumber" TextAlignment="Center">Слайд: --</TextBlock>
+                <StackPanel Orientation="Horizontal" Background="Gainsboro" HorizontalAlignment="Center">
+                    <Button Width="100" Height="40" Content="Предыдущий" Click="ChooseText_Click" Margin="10"/>
+                    <Button Width="120" Height="30" Content="Перегенерировать" Click="ChoosePdf_Click" Margin="10" Foreground="#FFCE0000"/>
+                    <Button Width="100" Height="40" Content="Следующий" Click="ChooseText_Click" Margin="10"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
         

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VideoLecture.Pages"
         mc:Ignorable="d"
-        Title="AddEditLecture" Height="200" Width="350" ResizeMode="NoResize">
+        Title="Образ лектора" Height="200" Width="350" ResizeMode="NoResize">
     <!--Добавление видеолектора-->
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

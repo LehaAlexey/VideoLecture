@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Xml.Linq;
 using VideoLecture.DataProviders;
 using VideoLecture.Pages;
+using VideoLecture.Services;
 
 namespace VideoLecture
 {
@@ -27,7 +28,7 @@ namespace VideoLecture
         {
             InitializeComponent();
         }
-        public Lecture Lecture { get; set; }
+        public Lector Lecture { get; set; }
         public string PdfPath { get; set; }
         public string TextPath { get; set; }
         private void ChooseLecture_Click(object sender, RoutedEventArgs e)
@@ -37,7 +38,7 @@ namespace VideoLecture
             dialog.ShowDialog();
             if (dialog.DialogResult == true)
             {
-                Lecture = VideoLectureProvider.GetLecture(LectureName);
+                Lecture = VideoLectorProvider.GetLecture(LectureName);
                 LectureIsChooseTextBlock.Text = $"{LectureName}.xml";
             }
             
@@ -67,5 +68,19 @@ namespace VideoLecture
                 PdfIsChooseTextBlock.Text = path.Split('\\').Last();
             }
         }
+        private void DeleteProject_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить этот проект?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                // Получаем доступ к родительскому окну
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                if (mainWindow != null)
+                {
+                    // Удаляем вкладку проекта
+                    mainWindow.RemoveProjectTab((IProject)this.DataContext);
+                }
+            }
+        }
+        
     }
 }

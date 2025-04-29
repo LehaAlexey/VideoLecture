@@ -6,9 +6,6 @@ namespace VideoLecture.Services
     public interface IProject
     {
         public string Name { get;}
-        public Task<bool> SetSpeechAudioAsync(string path);
-        public Task<bool> SetPresentationAsync(string path);
-        public Task<bool> SetLecturePhotoAsync(string path);
 
         public Task<bool> GenerateLectueComplexAsync();
 

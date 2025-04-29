@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace VideoLecture.Services
 {
-    internal class ProjectFactoryMOCK : IProjectFactory
+    internal class ProjectFactory : IProjectFactory
     {
         public IProject CreateProject(string name)
         {
-            return new ProjectMOCK(name);
+            return new Project(name);
         }
     }
 }

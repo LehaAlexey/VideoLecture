@@ -9,18 +9,18 @@ using System.Xml.Linq;
 
 namespace VideoLecture.DataProviders
 {
-    internal static class VideoLectureProvider
+    internal static class VideoLectorProvider
     {
         const string PATH = "userfiles/video_lectors/";
 
-        static VideoLectureProvider()
+        static VideoLectorProvider()
         {
             if (!Directory.Exists(PATH))
             {
                 Directory.CreateDirectory(PATH);
             }
         }
-        public static void CreateXmlFile(Lecture lecture)
+        public static void CreateXmlFile(Lector lecture)
         {
 
 
@@ -35,7 +35,7 @@ namespace VideoLecture.DataProviders
             xdoc.Save($"userfiles/video_lectors/{lecture.Name}.xml");
         }
 
-        public static void EditXmlFile(string oldLectureName, Lecture newLecture)
+        public static void EditXmlFile(string oldLectureName, Lector newLecture)
         {
             string oldFilePath = $"{PATH}{oldLectureName}.xml";
             string newFilePath = $"{PATH}{newLecture.Name}.xml";
@@ -62,16 +62,16 @@ namespace VideoLecture.DataProviders
             return File.Exists($"{PATH}{name}.xml");
         }
 
-        public static List<Lecture> GetLectures()
+        public static List<Lector> GetLectures()
         {
-            List<Lecture> lectures = new List<Lecture>();
+            List<Lector> lectures = new List<Lector>();
             foreach (var file in Directory.GetFiles(PATH, "*.xml"))
             {
                 var xdoc = XDocument.Load(file);
                 var lectureElement = xdoc.Root;
                 if (lectureElement != null)
                 {
-                    var currentLecture = new Lecture
+                    var currentLecture = new Lector
                     {
                         Name = lectureElement.Element("LectureName")?.Value,
                         PhotoPath = lectureElement.Element("PhotoPath")?.Value,
@@ -84,14 +84,14 @@ namespace VideoLecture.DataProviders
             return lectures;
         }
 
-        public static Lecture GetLecture(string name)
+        public static Lector GetLecture(string name)
         {
-            Lecture lecture = null;
+            Lector lecture = null;
             var xdoc = XDocument.Load(PATH + $"{name}.xml");
             var lectureElement = xdoc.Root;
             if (lectureElement != null)
             {
-                lecture = new Lecture
+                lecture = new Lector
                 {
                     Name = lectureElement.Element("LectureName")?.Value,
                     PhotoPath = lectureElement.Element("PhotoPath")?.Value,

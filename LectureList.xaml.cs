@@ -15,7 +15,7 @@ namespace VideoLecture
         public LectureList()
         {
             InitializeComponent();
-            Lectures.ItemsSource = VideoLectureProvider.GetLectures();
+            Lectures.ItemsSource = VideoLectorProvider.GetLectures();
             Lectures.DisplayMemberPath = "Name";
             SelectLectureButton.IsEnabled = false;
         }
@@ -25,7 +25,7 @@ namespace VideoLecture
         }
         private void SelectLecture_Click(object sender, RoutedEventArgs e)
         {
-            var tmpLecture = Lectures.SelectedItem as Lecture;
+            var tmpLecture = Lectures.SelectedItem as Lector;
             LectureIsChose(sender, tmpLecture.Name);
             DialogResult = true;
             Close();
